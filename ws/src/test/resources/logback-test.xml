@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+<!--    <include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+    <!--    <include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <!-- reset all previous level configurations of all j.u.l. loggers -->
+        <resetJUL>true</resetJUL>
+    </contextListener>
+    <!--    <property name="LOG_PATH" value="logs/app.log"/>-->
+    <property name="LOG_PATH" value="${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}"/>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+<!--                %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n-->
+                %d{HH:mm:ss.SSS} [%t] %-5level %logger{9999} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE" />
+    </root>
+    <logger name="lt.markmerkk" level="debug"/>
+    <logger name="com.zaxxer.hikari" level="info"/>
+    <logger name="org.springframework.boot" level="info"/>
+    <logger name="org.springframework.beans" level="info"/>
+    <logger name="org.springframework.context" level="info"/>
+    <logger name="org.springframework.data" level="info"/>
+    <logger name="org.springframework.core" level="info"/>
+    <logger name="org.springframework.orm" level="info"/>
+    <logger name="org.springframework.security" level="info"/>
+    <logger name="org.springframework.amqp" level="info"/>
+    <logger name="org.springframework.web" level="info"/>
+    <logger name="_org.springframework.web" level="info"/>
+    <logger name="org.springframework.scheduling" level="info"/>
+    <logger name="logging.level.org.apache.http.wire" level="info"/>
+    <logger name="org.hibernate" level="info"/>
+    <logger name="org.apache.http" level="info"/>
+    <logger name="org.flywaydb" level="info"/>
+    <logger name="org.apache.catalina" level="info"/>
+    <logger name="org.apache.tomcat" level="info"/>
+    <logger name="jdk.event.security" level="info"/>
+    <logger name="sun.net.www.protocol.http" level="info"/>
+    <logger name="com.gargoylesoftware.htmlunit" level="info"/>
+</configuration>
