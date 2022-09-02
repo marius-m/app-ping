@@ -2,6 +2,9 @@ package lt.markmerkk.ping.controllers
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import lt.markmerkk.ping.entities.ContentDetailResponse
+import lt.markmerkk.ping.entities.PingEntry
+import lt.markmerkk.ping.repositories.PingRepository
+import lt.markmerkk.ping.utils.TimeProvider
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -15,7 +18,10 @@ import java.security.Principal
 
 @RestController
 @RequestMapping("/api/v1")
-open class BasicRestController {
+open class BasicRestController(
+    @Autowired private val pingRepository: PingRepository,
+    @Autowired private val timeProvider: TimeProvider,
+) {
 
     @Autowired
     lateinit var objectMapper: ObjectMapper
@@ -45,6 +51,13 @@ open class BasicRestController {
         @RequestBody(required = true) contentRaw: ContentDetailResponse,
     ): HttpStatus {
         l.info("ping(userAgent: '{}', content: '{}')", userAgent, contentRaw)
+        pingRepository.storePing(
+            pingEntry = PingEntry.fromResponse(
+                timeProvider = timeProvider,
+                userAgent = userAgent ?: "",
+                response = contentRaw,
+            )
+        )
         return HttpStatus.OK
     }
 

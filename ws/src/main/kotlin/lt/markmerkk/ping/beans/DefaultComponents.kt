@@ -6,6 +6,8 @@ import lt.markmerkk.ping.AppConsts
 import lt.markmerkk.ping.BuildConfig
 import lt.markmerkk.ping.RNDProvider
 import lt.markmerkk.ping.configs.db.DBCreds
+import lt.markmerkk.ping.dao.PingEntryDao
+import lt.markmerkk.ping.repositories.PingRepository
 import lt.markmerkk.ping.utils.TimeProvider
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
@@ -61,6 +63,16 @@ class DefaultComponents {
         val dbCreds = DBCreds.fromProps(buildConfig, configPath = AppConsts.DB_CREDS_PATH)
         logger.info("Connecting to ${dbCreds.url}")
         return dbCreds
+    }
+
+    @Bean
+    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+    open fun providePingRepository(
+        pingEntryDao: PingEntryDao,
+    ): PingRepository {
+        return PingRepository(
+            pingEntryDao = pingEntryDao,
+        )
     }
 
     private val logger = LoggerFactory.getLogger(DefaultComponents::class.java)!!
