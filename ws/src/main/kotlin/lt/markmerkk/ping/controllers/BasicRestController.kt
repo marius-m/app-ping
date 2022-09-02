@@ -50,14 +50,13 @@ open class BasicRestController(
         @RequestHeader(value = "User-Agent", required = false) userAgent: String?,
         @RequestBody(required = true) contentRaw: ContentDetailResponse,
     ): HttpStatus {
-        l.info("ping(userAgent: '{}', content: '{}')", userAgent, contentRaw)
-        pingRepository.storePing(
-            pingEntry = PingEntry.fromResponse(
-                timeProvider = timeProvider,
-                userAgent = userAgent ?: "",
-                response = contentRaw,
-            )
+        val pingEntry = PingEntry.fromResponse(
+            timeProvider = timeProvider,
+            userAgent = userAgent ?: "",
+            response = contentRaw,
         )
+        l.info("pingDetail(userAgent: '{}', content: '{}')", userAgent, pingEntry)
+        pingRepository.storePing(pingEntry = pingEntry)
         return HttpStatus.OK
     }
 
