@@ -1,6 +1,7 @@
 package lt.markmerkk.ping.controllers
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import lt.markmerkk.ping.entities.ContentDetailResponse
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -30,6 +31,20 @@ open class BasicRestController {
         @RequestBody(required = false) content: String?,
     ): HttpStatus {
         l.info("ping(userAgent: '{}', content: '{}')", userAgent, content)
+        return HttpStatus.OK
+    }
+
+    @RequestMapping(
+        value = ["/pingDetail"],
+        method = [RequestMethod.POST],
+        produces = ["application/json"]
+    )
+    @ResponseBody
+    fun pingDetail(
+        @RequestHeader(value = "User-Agent", required = false) userAgent: String?,
+        @RequestBody(required = true) contentRaw: ContentDetailResponse,
+    ): HttpStatus {
+        l.info("ping(userAgent: '{}', content: '{}')", userAgent, contentRaw)
         return HttpStatus.OK
     }
 

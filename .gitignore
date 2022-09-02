@@ -43,3 +43,4 @@ atlassian-ide-plugin.xml
 logs/
 build/
 ws/build/
+ws/src/main/resources/creds.properties

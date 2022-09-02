@@ -2,8 +2,10 @@ package lt.markmerkk.ping.beans
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import lt.markmerkk.ping.AppConsts
 import lt.markmerkk.ping.BuildConfig
 import lt.markmerkk.ping.RNDProvider
+import lt.markmerkk.ping.configs.db.DBCreds
 import lt.markmerkk.ping.utils.TimeProvider
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
@@ -49,6 +51,16 @@ class DefaultComponents {
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     open fun provideRndProvider(): RNDProvider {
         return RNDProvider()
+    }
+
+    @Bean
+    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+    open fun provideDbCreds(
+        buildConfig: BuildConfig,
+    ): DBCreds {
+        val dbCreds = DBCreds.fromProps(buildConfig, configPath = AppConsts.DB_CREDS_PATH)
+        logger.info("Connecting to ${dbCreds.url}")
+        return dbCreds
     }
 
     private val logger = LoggerFactory.getLogger(DefaultComponents::class.java)!!
