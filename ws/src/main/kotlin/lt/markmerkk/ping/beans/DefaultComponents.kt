@@ -2,12 +2,15 @@ package lt.markmerkk.ping.beans
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import lt.markmerkk.ping.AppConsts
 import lt.markmerkk.ping.BuildConfig
 import lt.markmerkk.ping.RNDProvider
 import lt.markmerkk.ping.configs.db.DBCreds
+import lt.markmerkk.ping.dao.DeviceRegisterEntryDao
 import lt.markmerkk.ping.dao.PingEntryDao
 import lt.markmerkk.ping.firebase.entities.FBCreds
+import lt.markmerkk.ping.repositories.FirebaseRepository
 import lt.markmerkk.ping.repositories.PingRepository
 import lt.markmerkk.ping.utils.TimeProvider
 import org.slf4j.LoggerFactory
@@ -32,9 +35,8 @@ class DefaultComponents {
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     open fun provideObjectMapper(): ObjectMapper {
-        return ObjectMapper().apply {
-            registerModule(KotlinModule())
-        }
+        return ObjectMapper()
+            .registerKotlinModule()
     }
 
     @Bean
@@ -72,6 +74,16 @@ class DefaultComponents {
     ): PingRepository {
         return PingRepository(
             pingEntryDao = pingEntryDao,
+        )
+    }
+
+    @Bean
+    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+    open fun provideDeviceRegisterRepository(
+        deviceRegisterEntryDao: DeviceRegisterEntryDao,
+    ): FirebaseRepository {
+        return FirebaseRepository(
+            deviceRegisterDao = deviceRegisterEntryDao,
         )
     }
 

@@ -1,8 +1,8 @@
 package lt.markmerkk.ping.controllers
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import lt.markmerkk.ping.entities.ContentDetailRequest
-import lt.markmerkk.ping.entities.PingEntry
+import lt.markmerkk.ping.entities.requests.ContentDetailRequest
+import lt.markmerkk.ping.entities.entries.PingEntry
 import lt.markmerkk.ping.repositories.PingRepository
 import lt.markmerkk.ping.utils.TimeProvider
 import org.slf4j.LoggerFactory

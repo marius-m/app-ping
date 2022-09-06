@@ -1,5 +1,6 @@
-package lt.markmerkk.ping.entities
+package lt.markmerkk.ping.entities.entries
 
+import lt.markmerkk.ping.entities.requests.ContentDetailRequest
 import lt.markmerkk.ping.utils.AppDTUtils
 import lt.markmerkk.ping.utils.TimeProvider
 import java.time.LocalDateTime

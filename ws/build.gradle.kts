@@ -5,6 +5,7 @@ plugins {
     kotlin("jvm")
     id("org.springframework.boot")
     id("org.jetbrains.kotlin.plugin.noarg")
+    id("org.jetbrains.kotlin.plugin.jpa")
     id("org.flywaydb.flyway")
 }
 

@@ -1,4 +1,4 @@
-package lt.markmerkk.ping.entities
+package lt.markmerkk.ping.entities.requests
 
 data class FBMessageRequest(
     val token: String,
