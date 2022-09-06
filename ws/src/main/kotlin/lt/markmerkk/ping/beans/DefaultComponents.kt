@@ -91,7 +91,7 @@ class DefaultComponents {
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     open fun provideFirebaseCreds(): FBCreds {
         return FBCreds(
-            configPath = "u3x-sample-firebase-adminsdk-4dutj-36d7a5d013.json"
+            configPath = "u3x-sample-firebase-adminsdk-4dutj-e11d08be9a.json"
         )
     }
 
