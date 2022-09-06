@@ -1,7 +1,7 @@
 package lt.markmerkk.ping.controllers
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import lt.markmerkk.ping.entities.ContentDetailResponse
+import lt.markmerkk.ping.entities.ContentDetailRequest
 import lt.markmerkk.ping.entities.PingEntry
 import lt.markmerkk.ping.repositories.PingRepository
 import lt.markmerkk.ping.utils.TimeProvider
@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RestController
-import java.security.Principal
 
 @RestController
 @RequestMapping("/api/v1")
-open class BasicRestController(
+open class PingRestController(
     @Autowired private val pingRepository: PingRepository,
     @Autowired private val timeProvider: TimeProvider,
 ) {
@@ -48,7 +47,7 @@ open class BasicRestController(
     @ResponseBody
     fun pingDetail(
         @RequestHeader(value = "User-Agent", required = false) userAgent: String?,
-        @RequestBody(required = true) contentRaw: ContentDetailResponse,
+        @RequestBody(required = true) contentRaw: ContentDetailRequest,
     ): HttpStatus {
         val pingEntry = PingEntry.fromResponse(
             timeProvider = timeProvider,
@@ -61,6 +60,6 @@ open class BasicRestController(
     }
 
     companion object {
-        private val l = LoggerFactory.getLogger(BasicRestController::class.java)!!
+        private val l = LoggerFactory.getLogger(PingRestController::class.java)!!
     }
 }

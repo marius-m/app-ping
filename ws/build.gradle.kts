@@ -38,6 +38,9 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools:2.6.6")
     implementation("javax.xml.bind:jaxb-api:2.3.0")
 
+    // Firebase
+    implementation("com.google.firebase:firebase-admin:9.0.0")
+
     // Logging
     implementation("org.slf4j:jul-to-slf4j:1.7.12")
     implementation("org.slf4j:log4j-over-slf4j:1.7.12")

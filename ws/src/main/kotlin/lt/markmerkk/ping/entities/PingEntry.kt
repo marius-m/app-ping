@@ -25,7 +25,7 @@ data class PingEntry(
         fun fromResponse(
             timeProvider: TimeProvider,
             userAgent: String,
-            response: ContentDetailResponse,
+            response: ContentDetailRequest,
         ): PingEntry {
             val now = timeProvider.now()
             return PingEntry(

@@ -1,6 +1,6 @@
 package lt.markmerkk.ping.entities
 
-data class ContentDetailResponse(
+data class ContentDetailRequest(
     val coordLat: Double,
     val coordLong: Double,
     val dtLastPing: String,
