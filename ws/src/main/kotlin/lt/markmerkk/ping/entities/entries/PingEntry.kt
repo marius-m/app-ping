@@ -18,9 +18,9 @@ data class PingEntry(
     @Column(name = "user_agent") val userAgent: String,
     @Column(name = "coord_lat") val coordLat: Double,
     @Column(name = "coord_long") val coordLong: Double,
-    @Column(name = "device_dt_last_ping") val deviceDtLastPing: LocalDateTime,
     @Column(name = "device_dt_current") val deviceDtCurrent: LocalDateTime,
     @Column(name = "dt_current") val dtCurrent: LocalDateTime,
+    @Column(name = "extras") val extras: String,
 ) {
     companion object {
         fun fromResponse(
@@ -33,15 +33,12 @@ data class PingEntry(
                 userAgent = userAgent,
                 coordLat = response.coordLat,
                 coordLong = response.coordLong,
-                deviceDtLastPing = AppDTUtils.dateTimeFromStringOrDefault(
-                    dtDefault = now,
-                    dtAsString = response.dtLastPing,
-                ),
                 deviceDtCurrent = AppDTUtils.dateTimeFromStringOrDefault(
                     dtDefault = now,
                     dtAsString = response.dtCurrent,
                 ),
                 dtCurrent = now,
+                extras = response.extras ?: "",
             )
         }
     }
