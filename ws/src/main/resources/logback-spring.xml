@@ -49,7 +49,7 @@
     <logger name="org.hibernate" level="info"/>
     <logger name="org.apache.http" level="debug"/>
     <logger name="org.flywaydb" level="info"/>
-    <logger name="org.apache.catalina" level="debug"/>
+    <logger name="org.apache.catalina" level="info"/>
     <logger name="org.apache.tomcat" level="info"/>
     <logger name="jdk.event.security" level="info"/>
     <logger name="sun.net.www.protocol.http" level="info"/>

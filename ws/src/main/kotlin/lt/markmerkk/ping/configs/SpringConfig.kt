@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.Scheduled
 @EnableScheduling
 open class SpringConfig {
 
-    @Scheduled(initialDelay = SECOND * 10, fixedDelay = MINUTE * 30)
+    @Scheduled(initialDelay = MINUTE * 1, fixedDelay = MINUTE * 15)
     fun schedulePerioditPing() {
         l.debug("periodicPing")
     }
