@@ -31,7 +31,7 @@ class FBMessaging(
     ) {
         l.info("sendMessageBundle()")
         if (registrationTokens.isEmpty()) {
-            l.info("sendMessageBundle.failureNoTokens()")
+            l.info("sendMessageBundle.ignoreNoTokens()")
             return
         }
         val fbMessage = MulticastMessage.builder()
